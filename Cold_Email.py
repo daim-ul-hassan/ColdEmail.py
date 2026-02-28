@@ -250,9 +250,9 @@ if st.session_state.email_generated:
             st.rerun()
     
     with col2:
-        if st.button("📋 Copy Text", use_container_width=True):
-            st.toast("📋 Select and copy the text from above!")
+        if st.button("Copy Text", use_container_width=True):
+            st.toast("Select and copy the text from above!")
 
 st.divider()
-st.caption("🔒 Your API key is only used for this session and never stored permanently.")
-st.caption("🤖 Powered by CrewAI with Gemini LLM")
+st.caption("Your API key is only used for this session and never stored permanently.")
+st.caption("Powered by CrewAI with Gemini LLM")
