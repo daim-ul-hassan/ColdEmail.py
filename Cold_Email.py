@@ -7,7 +7,7 @@ load_dotenv()
 
 st.set_page_config(
     page_title="Cold Email Generator",
-    page_icon="📧",
+    page_icon=":email:",
     layout="centered"
 )
 
@@ -19,14 +19,14 @@ if "email_generated" not in st.session_state:
 # Initialize LLM placeholder
 llm = None
 
-st.title("📧 Cold Email Generator")
+st.title(":email: Cold Email Generator")
 st.markdown("Generate personalized cold emails using AI-powered agents")
 
 st.divider()
 
 # Sidebar for API Key and User Info
 with st.sidebar:
-    st.header("🔑 Configuration")
+    st.header(":key: Configuration")
     
     # API Key input
     api_key_input = st.text_input(
@@ -45,11 +45,11 @@ with st.sidebar:
                 model="gemini/gemini-2.5-flash",
                 api_key=api_key
             )
-            st.success("✅ API Key configured!")
+            st.success(":white_check_mark: API Key configured!")
         except Exception as e:
-            st.error(f"❌ Error initializing LLM: {e}")
+            st.error(f":x: Error initializing LLM: {e}")
     else:
-        st.warning("⚠️ Please enter Gemini API Key")
+        st.warning(":warning: Please enter Gemini API Key")
     
     st.divider()
     
@@ -106,18 +106,18 @@ additional_context = st.text_area(
 st.divider()
 
 # Generate button
-if st.button("🚀 Generate Cold Email", type="primary", use_container_width=True):
+if st.button(":rocket: Generate Cold Email", type="primary", use_container_width=True):
     # Validation
     if not api_key_input:
-        st.error("❌ Please enter your Gemini API Key in the sidebar!")
+        st.error(":x: Please enter your Gemini API Key in the sidebar!")
     elif not sender_name:
-        st.error("❌ Please enter your name in the sidebar!")
+        st.error(":x: Please enter your name in the sidebar!")
     elif not target_company:
-        st.error("❌ Please enter the target company name!")
+        st.error(":x: Please enter the target company name!")
     elif llm is None:
-        st.error("❌ LLM not initialized. Please check your API key.")
+        st.error(":x: LLM not initialized. Please check your API key.")
     else:
-        with st.spinner("🤖 AI Agents are crafting your cold email..."):
+        with st.spinner(":robot_face: AI Agents are crafting your cold email..."):
             try:
                 # Create CrewAI Agents
                 researcher = Agent(
@@ -225,12 +225,12 @@ if st.button("🚀 Generate Cold Email", type="primary", use_container_width=Tru
                 st.session_state.email_generated = True
                 
             except Exception as e:
-                st.error(f"❌ Error generating email: {str(e)}")
+                st.error(f":x: Error generating email: {str(e)}")
 
 # Display generated email
 if st.session_state.email_generated:
     st.divider()
-    st.subheader("✅ Your AI-Generated Cold Email")
+    st.subheader(":white_check_mark: Your AI-Generated Cold Email")
     
     st.text_area(
         "Email Content",
@@ -244,7 +244,7 @@ if st.session_state.email_generated:
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("🔄 Generate Another", use_container_width=True):
+        if st.button(":arrows_counterclockwise: Generate Another", use_container_width=True):
             st.session_state.email_generated = False
             st.session_state.generated_email = ""
             st.rerun()
